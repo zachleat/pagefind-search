@@ -36,8 +36,10 @@ class PagefindSearch extends HTMLElement {
 		let o = {
 			element: `#${this.id}`,
 		};
+
+		let prefix = "_";
 		for(let {name, value} of this.attributes) {
-			if(name.startsWith("_")) {
+			if(name.startsWith(prefix)) {
 				if(name === PagefindSearch.attrs.bundlePath) {
 					// if bundle path is relative, we need to make it absolute to pass in to Pagefind (GitHub pages fix)
 					let u = new URL(value, location);
@@ -47,7 +49,7 @@ class PagefindSearch extends HTMLElement {
 				if(value === "false" || value === "true") {
 					value = JSON.parse(value);
 				}
-				o[PagefindSearch.underscoreToCamelCase(name.slice(1))] = value;
+				o[PagefindSearch.underscoreToCamelCase(name.slice(prefix.length))] = value;
 			}
 		}
 		return o;
