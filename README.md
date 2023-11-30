@@ -54,6 +54,7 @@ Use the `manual` attribute to manually initialize your Pagefind UI with any cust
 <pagefind-search manual id="my-search">
 	<!-- Don’t forget your fallback content! -->
 </pagefind-search>
+
 <script type="module">
 let el = document.querySelector("#my-search");
 await el.pagefind({
