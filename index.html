@@ -38,14 +38,12 @@
 			<!-- Manual initialization (full JS control) -->
 			<pagefind-search manual id="my-search" _bundle_path="./pagefind/"></pagefind-search>
 			<script type="module">
-			(async () => {
-				let el = document.querySelector("#my-search");
-				await el.pagefind({
-					showImages: false,
-					debounceTimeoutMs: 100,
-				});
-				console.log( el.pagefindUI );
-			})();
+			let el = document.querySelector("#my-search");
+			await el.pagefind({
+				showImages: false,
+				debounceTimeoutMs: 100,
+			});
+			console.log( el.pagefindUI );
 			</script>
 			<p>After content.</p>
 		</main>

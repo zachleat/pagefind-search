@@ -55,18 +55,16 @@ Use the `manual` attribute to manually initialize your Pagefind UI with any cust
 	<!-- Don’t forget your fallback content! -->
 </pagefind-search>
 <script type="module">
-(async () => {
-	let el = document.querySelector("#my-search");
-	await el.pagefind({
-		showImages: false,
-		debounceTimeoutMs: 100,
-		processTerm: function (term) {
-			return term.replace(/aa/g, 'ā');
-		}
-	});
+let el = document.querySelector("#my-search");
+await el.pagefind({
+	showImages: false,
+	debounceTimeoutMs: 100,
+	processTerm: function (term) {
+		return term.replace(/aa/g, 'ā');
+	}
+});
 
-	// Use `el.pagefindUI` to access the instance object
-})();
+// Use `el.pagefindUI` to access the PagefindUI instance
 </script>
 ```
 
