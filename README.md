@@ -32,13 +32,13 @@ Full [options list on the Pagefind documentation](https://pagefind.app/docs/ui/)
 * `_show_sub_results` for showSubResults
 * `_show_images` for showImages
 * `_excerpt_length` for excerptLength
-* (incompatible) processTerm
-* (incompatible) processResult
+* (not attribute-friendly, read below) processTerm
+* (not attribute-friendly, read below) processResult
 * `_show_empty_filters` for showEmptyFilters
 * `_reset_styles` for resetStyles
 * `_bundle_path` for bundlePath
-* `_debounce_timeout_ms`
-* (incompatible) translations
+* `_debounce_timeout_ms` for debounceTimeoutMs
+* (not attribute-friendly, read below) translations
 
 ```html
 <pagefind-search _show_images="false">
