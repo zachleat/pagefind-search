@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<title>pagefind-search Web Component</title>
+		<script type="module" src="pagefind-search.js"></script>
+	</head>
+	<body>
+		<header>
+			<h1>pagefind-search Web Component</h1>
+		</header>
+		<main>
+			<p>Before content.</p>
+			<pagefind-search>
+				<form action="https://duckduckgo.com/" method="get" style="min-height: 3.2em;">
+					<label>
+						Search for:
+						<input type="search" name="q" autocomplete="off" autofocus>
+					</label>
+					<input type="hidden" name="sites" value="www.zachleat.com">
+					<button type="submit">Search</button>
+				</form>
+			</pagefind-search>
+			<p>Inbetween content.</p>
+			<style>
+			/* Reduce CLS */
+			pagefind-search:not(:defined) {
+				display: block;
+				min-height: 3.2em;
+			}
+			</style>
+			<!-- Set constructor options as attributes -->
+			<pagefind-search _show_images="false"></pagefind-search>
+			<p>Inbetween content.</p>
+			<!-- Manual initialization (full JS control) -->
+			<pagefind-search manual id="my-search"></pagefind-search>
+			<script type="module">
+			(async () => {
+				let el = document.querySelector("#my-search");
+				await el.pagefind({
+					showImages: false,
+					debounceTimeoutMs: 100
+				});
+			})();
+			</script>
+			<p>After content.</p>
+		</main>
+	</body>
+</html>
