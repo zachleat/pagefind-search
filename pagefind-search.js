@@ -6,15 +6,20 @@ class PagefindSearch extends HTMLElement {
 	}
 
 	static attrs = {
-		bundlePath: "bundle-path",
+		bundlePath: "_bundle_path",
 		manualInit: "manual",
+		relative: "relative",
 	};
 
 	static count = 0;
 
 	get bundlePath() {
-		let dir = this.getAttribute(PagefindSearch.attrs.bundlePath);
-		return dir || "/pagefind/";
+		let dir = this.getAttribute(PagefindSearch.attrs.bundlePath) || "/pagefind/";
+		if(this.hasAttribute(PagefindSearch.attrs.relative)) {
+			let u = new URL(dir, location);
+			return u.pathname;
+		}
+		return dir;
 	}
 
 	get id() {
@@ -37,7 +42,10 @@ class PagefindSearch extends HTMLElement {
 		};
 		for(let {name, value} of this.attributes) {
 			if(name.startsWith("_")) {
-				o[PagefindSearch.underscoreToCamelCase(name.slice(1))] = JSON.parse(value);
+				if(value === "false" || value === "true") {
+					value = JSON.parse(value);
+				}
+				o[PagefindSearch.underscoreToCamelCase(name.slice(1))] = value;
 			}
 		}
 		return o;

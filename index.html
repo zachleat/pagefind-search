@@ -12,8 +12,9 @@
 			<h1>pagefind-search Web Component</h1>
 		</header>
 		<main>
+			<p><a href="https://github.com/zachleat/pagefind-search">Source code on GitHub</a>.</p>
 			<p>Before content.</p>
-			<pagefind-search>
+			<pagefind-search relative>
 				<form action="https://duckduckgo.com/" method="get" style="min-height: 3.2em;">
 					<label>
 						Search for:
@@ -32,16 +33,16 @@
 			}
 			</style>
 			<!-- Set constructor options as attributes -->
-			<pagefind-search _show_images="false"></pagefind-search>
+			<pagefind-search _show_images="false" relative></pagefind-search>
 			<p>Inbetween content.</p>
 			<!-- Manual initialization (full JS control) -->
-			<pagefind-search manual id="my-search"></pagefind-search>
+			<pagefind-search manual id="my-search" relative></pagefind-search>
 			<script type="module">
 			(async () => {
 				let el = document.querySelector("#my-search");
 				await el.pagefind({
 					showImages: false,
-					debounceTimeoutMs: 100
+					debounceTimeoutMs: 100,
 				});
 			})();
 			</script>
