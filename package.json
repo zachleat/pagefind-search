@@ -1,6 +1,6 @@
 {
   "name": "@zachleat/pagefind-search",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A web component to search with Pagefind.",
   "main": "pagefind-search.js",
   "scripts": {
