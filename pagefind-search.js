@@ -8,18 +8,13 @@ class PagefindSearch extends HTMLElement {
 	static attrs = {
 		bundlePath: "_bundle_path",
 		manualInit: "manual",
-		relative: "relative",
 	};
 
 	static count = 0;
 
 	get bundlePath() {
-		let dir = this.getAttribute(PagefindSearch.attrs.bundlePath) || "/pagefind/";
-		if(this.hasAttribute(PagefindSearch.attrs.relative)) {
-			let u = new URL(dir, location);
-			return u.pathname;
-		}
-		return dir;
+		let dir = this.getAttribute(PagefindSearch.attrs.bundlePath);
+		return dir || "/pagefind/";
 	}
 
 	get id() {
@@ -42,6 +37,12 @@ class PagefindSearch extends HTMLElement {
 		};
 		for(let {name, value} of this.attributes) {
 			if(name.startsWith("_")) {
+				if(name === PagefindSearch.attrs.bundlePath) {
+					// if bundle path is relative, we need to make it absolute to pass in to Pagefind (GitHub pages fix)
+					let u = new URL(value, location);
+					value = u.pathname;
+				}
+
 				if(value === "false" || value === "true") {
 					value = JSON.parse(value);
 				}
