@@ -97,3 +97,8 @@ If search is a secondary feature on a page, you _could_ lazy load the component 
 	</template>
 </is-land>
 ```
+
+### Full Attribute List
+
+* `pagefind-autofocus` to focus on the form element after pagefind has initialized.
+* `manual` for manual initialization.
