@@ -72,7 +72,20 @@ Use the `manual` attribute to manually initialize your Pagefind UI with any cust
 
 ### Loading via Islands
 
-Use [`<is-land>` to enable more control over the component’s loading conditions](https://www.11ty.dev/docs/plugins/partial-hydration/).
+Use [`<is-land>` to enable more control over the component’s downstream asset loading](https://www.11ty.dev/docs/plugins/partial-hydration/).
+
+```html
+<script type="module" src="pagefind-search.js"></script>
+
+<!-- Use any of is-land’s on: conditions -->
+<is-land on:idle on:visible on:media="(min-width: 40em)" on:save-data="false">
+	<pagefind-search>
+		<!-- Don’t forget your fallback content! -->
+	</pagefind-search>
+</is-land>
+```
+
+If search is a secondary feature on a page, you _could_ lazy load the component definition too, though that would chain two separate JavaScript file loads together which is probably not what you want:
 
 ```html
 <!-- Use any of is-land’s on: conditions -->
