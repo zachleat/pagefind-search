@@ -81,7 +81,7 @@ Use [`<is-land>` to enable more control over the component’s loading condition
 		<!-- Don’t forget your fallback content! -->
 	</pagefind-search>
 	<template data-island>
-		<script type="module" src="/static/pagefind-search.js"></script>
+		<script type="module" src="pagefind-search.js"></script>
 	</template>
 </is-land>
 ```
