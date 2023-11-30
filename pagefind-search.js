@@ -52,28 +52,20 @@ class PagefindSearch extends HTMLElement {
 		return o;
 	}
 
-	onready() {
-		return new Promise(resolve => {
-			if(!this.script) {
+	async pagefind(customOptions) {
+		if(typeof PagefindUI == "undefined") {
+			if(!this.scriptPromise) {
 				throw new Error(`<${this.tagName.toLowerCase()}> is not yet attached to a document.`);
 			}
 
-			this.script.addEventListener("load", () => {
-				resolve();
-			})
-		});
-	}
-
-	async pagefind(customOptions) {
-		if(typeof PagefindUI == "undefined") {
-			await this.onready();
+			await this.scriptPromise;
 		}
 
 		let options = Object.assign({}, this.options, customOptions);
 		this.pagefindUI = new PagefindUI(options);
 	}
 
-	connectedCallback() {
+	async connectedCallback() {
 		if(this.hasAttached) {
 			return;
 		}
@@ -93,16 +85,11 @@ class PagefindSearch extends HTMLElement {
 		this.appendChild(link);
 
 		let scriptUrl = `${this.bundlePath}pagefind-ui.js`;
-		let script = document.createElement("script");
-		script.src = scriptUrl;
-		script.defer = true;
+		this.scriptPromise = import(scriptUrl);
 		if(!this.hasAttribute(PagefindSearch.attrs.manualInit)) {
-			script.addEventListener("load", async () => {
-				await this.pagefind();
-			});
+			await this.scriptPromise;
+			await this.pagefind();
 		}
-		this.script = script;
-		this.appendChild(script);
 	}
 }
 
