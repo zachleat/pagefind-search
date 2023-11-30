@@ -8,6 +8,7 @@ class PagefindSearch extends HTMLElement {
 	static attrs = {
 		bundlePath: "_bundle_path",
 		manualInit: "manual",
+		autofocus: "pagefind-autofocus",
 	};
 
 	static count = 0;
@@ -63,6 +64,11 @@ class PagefindSearch extends HTMLElement {
 
 		let options = Object.assign({}, this.options, customOptions);
 		this.pagefindUI = new PagefindUI(options);
+
+		let input = this.querySelector(`input:is([type="text"], [type="search"])`);
+		if(this.hasAttribute(PagefindSearch.attrs.autofocus)) {
+			input?.focus();
+		}
 	}
 
 	async connectedCallback() {
