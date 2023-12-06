@@ -46,7 +46,7 @@ class PagefindSearch extends HTMLElement {
 					value = u.pathname;
 				}
 
-				if(value === "false" || value === "true") {
+				if(value === "false" || value === "true" || Number(value).toString() === value) {
 					value = JSON.parse(value);
 				}
 				o[PagefindSearch.underscoreToCamelCase(name.slice(prefix.length))] = value;

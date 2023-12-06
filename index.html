@@ -15,7 +15,7 @@
 		<main>
 			<p><a href="https://github.com/zachleat/pagefind-search">Source code on GitHub</a>.</p>
 			<p>Before content.</p>
-			<pagefind-search _bundle_path="./pagefind/" pagefind-autofocus>
+			<pagefind-search _bundle_path="./pagefind/" _page_size="10" pagefind-autofocus>
 				<form action="https://duckduckgo.com/" method="get" style="min-height: 3.2em;">
 					<label>
 						Search for:
@@ -39,6 +39,8 @@
 			<!-- Manual initialization (full JS control) -->
 			<pagefind-search manual id="my-search" _bundle_path="./pagefind/"></pagefind-search>
 			<script type="module">
+			// import "./pagefind-search.js";
+
 			let el = document.querySelector("#my-search");
 			await el.pagefind({
 				showImages: false,
